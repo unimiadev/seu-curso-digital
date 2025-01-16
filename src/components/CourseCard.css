@@ -8,9 +8,13 @@
   flex-direction: column;
   height: 100%;
   background-color: white;
+  transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  perspective: 1000;
   -webkit-perspective: 1000;
+  position: relative;
 }
 
 /* Efeito hover do cartão */
@@ -26,8 +30,13 @@
   height: 180px;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
+  background-color: #f8f9fa;
+  transform: translateZ(0);
   -webkit-transform: translateZ(0);
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Imagem do curso */
@@ -35,9 +44,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   will-change: transform;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 /* Imagem padrão quando a original falha */
@@ -53,6 +67,9 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
 }
 
 /* Título do curso - limita em 2 linhas */
@@ -156,8 +173,10 @@
   padding-top: 12px;
   border-top: 1px solid #eee;
   width: 100%;
-  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .provider-info {
@@ -166,16 +185,22 @@
   gap: 8px;
   min-width: 0;
   flex: 1;
+  position: relative;
 }
 
 .provider-avatar {
   width: 24px;
   height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   border-radius: 50%;
   object-fit: cover;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   will-change: transform;
+  background-color: #f8f9fa;
+  position: relative;
+  z-index: 2;
 }
 
 .provider-name {
@@ -186,6 +211,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
+  flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
 .duration {
@@ -306,21 +334,51 @@
   }
 }
 
-/* Add media query specifically for iOS */
+/* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
   .course-card {
     transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
   }
 
   .course-image {
     transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    position: relative;
+    z-index: 1;
   }
 
   .course-image img {
     transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    position: absolute;
+    z-index: 1;
   }
 
   .provider-avatar {
     transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    display: block;
   }
+
+  .provider-info {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .course-meta-info {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+}
+
+.course-image img,
+.provider-avatar {
+  background-color: #f8f9fa;
 } 

@@ -21,8 +21,9 @@ const CourseCard = ({ course }) => {
     navigate(`/course/${course.id}`);
   };
 
-  const handleImageError = () => {
-    setImageError(true);
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src = defaultImage;
   };
 
   const renderStars = (rating) => {
@@ -66,7 +67,7 @@ const CourseCard = ({ course }) => {
         style={{ cursor: 'pointer' }}
       >
         <img
-          src={imageError ? defaultImage : course.image}
+          src={course.image || defaultImage}
           alt={course.title}
           onError={handleImageError}
           loading="lazy"
