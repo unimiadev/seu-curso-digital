@@ -8,13 +8,8 @@
   flex-direction: column;
   height: 100%;
   background-color: white;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  perspective: 1000;
-  -webkit-perspective: 1000;
   position: relative;
+  min-height: 400px;
 }
 
 /* Efeito hover do cartão */
@@ -27,31 +22,18 @@
 .course-image {
   position: relative;
   width: 100%;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 8px 8px 0 0;
+  padding-top: 56.25%;
   background-color: #f8f9fa;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Imagem do curso */
 .course-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: transform;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Imagem padrão quando a original falha */
@@ -66,28 +48,20 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1;
   min-height: 0;
-  position: relative;
-  z-index: 1;
 }
 
-/* Título do curso - limita em 2 linhas */
+/* Título do curso */
 .course-info h3 {
   margin: 10px 0;
   font-size: 1.1em;
   line-height: 1.4;
-  height: 2.8em;
+  max-height: 2.8em;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  display: block;
   text-overflow: ellipsis;
-  word-break: break-word;
+  word-wrap: break-word;
 }
 
 /* Avaliações */
@@ -158,62 +132,40 @@
 
 /* Detalhes do curso */
 .course-details {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 120px;
 }
 
 /* Informações do provedor e duração */
 .course-meta-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-top: auto;
   padding-top: 12px;
   border-top: 1px solid #eee;
-  width: 100%;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
 }
 
 .provider-info {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 0;
-  flex: 1;
-  position: relative;
+  margin-bottom: 8px;
 }
 
 .provider-avatar {
   width: 24px;
   height: 24px;
-  min-width: 24px;
-  min-height: 24px;
+  flex-shrink: 0;
   border-radius: 50%;
-  object-fit: cover;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: transform;
   background-color: #f8f9fa;
-  position: relative;
-  z-index: 2;
 }
 
 .provider-name {
-  color: #666;
   font-size: 0.9em;
-  font-weight: 500;
+  color: #666;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  min-width: 0;
   flex: 1;
-  position: relative;
-  z-index: 2;
 }
 
 .duration {
@@ -233,13 +185,12 @@
 .enroll-button {
   width: 100%;
   padding: 10px;
+  margin-top: 15px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
-  margin-top: 15px;
 }
 
 .enroll-button:hover {
@@ -279,86 +230,46 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .course-image {
-    height: 160px;
-  }
-
-  .course-info {
-    padding: 12px;
+  .course-card {
+    min-height: 380px;
   }
 
   .course-info h3 {
     font-size: 0.95em;
-    height: 2.6em;
-  }
-
-  .rating {
-    margin-bottom: 8px;
-  }
-
-  .stars {
-    font-size: 1em;
-  }
-
-  .rating-number {
-    font-size: 0.9em;
-  }
-
-  .provider-avatar {
-    width: 20px;
-    height: 20px;
-  }
-
-  .provider-name {
-    font-size: 0.85em;
-  }
-
-  .duration {
-    font-size: 0.85em;
-  }
-
-  .enroll-button {
-    padding: 8px;
-    font-size: 0.9em;
-    margin-top: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .course-card {
-    max-width: 100%;
-  }
-
-  .course-image {
-    height: 180px;
+    min-height: 360px;
   }
 }
 
 /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
   .course-card {
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
   }
 
-  .course-image {
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
-    position: relative;
-    z-index: 1;
+  .course-info {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex: 1;
+    flex: 1;
   }
 
-  .course-image img {
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
-    position: absolute;
-    z-index: 1;
-  }
-
-  .provider-avatar {
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
-    display: block;
+  .course-details {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex: 1;
+    flex: 1;
   }
 
   .provider-info {
@@ -371,10 +282,8 @@
   .course-meta-info {
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-flex-direction: column;
+    flex-direction: column;
   }
 }
 
