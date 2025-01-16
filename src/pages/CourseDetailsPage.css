@@ -1,0 +1,12 @@
+/* Página de detalhes do curso */
+.course-details-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+/* Empurra o rodapé para baixo quando o conteúdo é curto */
+.course-details-page > :nth-child(2) {
+  flex: 1;
+} 

@@ -1,0 +1,33 @@
+/* Cabeçalho principal */
+.header {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Imagem do cabeçalho */
+.header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 992px) {
+  .header {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 200px;
+  }
+} 
