@@ -8,6 +8,9 @@
   flex-direction: column;
   height: 100%;
   background-color: white;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
 }
 
 /* Efeito hover do cartão */
@@ -23,6 +26,8 @@
   height: 180px;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
+  -webkit-transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 /* Imagem do curso */
@@ -30,6 +35,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Imagem padrão quando a original falha */
@@ -57,6 +65,12 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 /* Avaliações */
@@ -141,12 +155,17 @@
   margin-top: auto;
   padding-top: 12px;
   border-top: 1px solid #eee;
+  width: 100%;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .provider-info {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  flex: 1;
 }
 
 .provider-avatar {
@@ -154,12 +173,19 @@
   height: 24px;
   border-radius: 50%;
   object-fit: cover;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .provider-name {
   color: #666;
   font-size: 0.9em;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .duration {
@@ -277,5 +303,24 @@
 
   .course-image {
     height: 180px;
+  }
+}
+
+/* Add media query specifically for iOS */
+@supports (-webkit-touch-callout: none) {
+  .course-card {
+    transform: translate3d(0,0,0);
+  }
+
+  .course-image {
+    transform: translate3d(0,0,0);
+  }
+
+  .course-image img {
+    transform: translate3d(0,0,0);
+  }
+
+  .provider-avatar {
+    transform: translate3d(0,0,0);
   }
 } 
