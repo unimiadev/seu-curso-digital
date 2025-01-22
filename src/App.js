@@ -7,19 +7,24 @@ import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
+import ScrollToTop from "./components/ScrollToTop";
+import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/sobre-nos" element={<About />} />
-        <Route path="/cursos" element={<CoursesPage />} />
-        <Route path="/cursos/:id" element={<CourseDetailsPage />} />
-        <Route path="/termos-de-uso" element={<Terms />} />
-        <Route path="/fale-conosco" element={<Contact />} />
-        <Route path="/politica-de-privacidade" element={<Privacy />} />
-      </Routes>
+      <Layout>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/sobre-nos" element={<About />} />
+          <Route path="/cursos" element={<CoursesPage />} />
+          <Route path="/cursos/:id" element={<CourseDetailsPage />} />
+          <Route path="/termos-de-uso" element={<Terms />} />
+          <Route path="/fale-conosco" element={<Contact />} />
+          <Route path="/politica-de-privacidade" element={<Privacy />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }
