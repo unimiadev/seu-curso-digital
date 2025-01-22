@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import CourseModal from '../components/courses/CourseModal';
+import CourseModal from '../CourseModal';
 import './CourseDetailsPage.css';
 
 const CourseDetailsPage = () => {

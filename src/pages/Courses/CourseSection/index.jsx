@@ -5,6 +5,7 @@ import CategoryFilter from '../CategoryFilter/index';
 import CoursesFilter from '../CoursesFilter/index';
 import { useCategories } from '../../../hooks/useCategories';
 import { useCourses } from '../../../hooks/useCourses';
+import LoadingSkeletons from './LoadingSkeletons';
 import './CourseSection.css';
 
 const removeAccents = (str) => {
@@ -143,7 +144,7 @@ const CourseSection = () => {
   }, [location]);
 
   if (coursesLoading || categoriesLoading) {
-    return <div className="loading-message">Carregando cursos...</div>;
+    return <LoadingSkeletons />;
   }
 
   if (coursesError || categoriesError) {
