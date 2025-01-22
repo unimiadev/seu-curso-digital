@@ -6,6 +6,7 @@ import CourseDetailsPage from "./pages/Courses/CourseDetails/CourseDetailsPage";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/cursos/:id" element={<CourseDetailsPage />} />
         <Route path="/termos-de-uso" element={<Terms />} />
         <Route path="/fale-conosco" element={<Contact />} />
+        <Route path="/politica-de-privacidade" element={<Privacy />} />
       </Routes>
     </Router>
   );
