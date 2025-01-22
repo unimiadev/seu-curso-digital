@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CourseCard.css';
-import defaultImage from '../assets/images/seucursodigital.png';
+import defaultImage from '../../../assets/images/seucursodigital.png';
 
 const CourseCard = ({ course }) => {
   const navigate = useNavigate();
@@ -18,10 +18,11 @@ const CourseCard = ({ course }) => {
       height: rect.height
     }));
 
-    navigate(`/course/${course.id}`);
+    navigate(`/cursos/${course.id}`);
   };
 
   const handleImageError = (e) => {
+    setImageError(true);
     e.target.onerror = null;
     e.target.src = defaultImage;
   };

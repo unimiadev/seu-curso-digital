@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CourseDetails from './CourseDetails';
+import CourseDetails from '../CourseDetails/index';
 import './CourseModal.css';
 
 const CourseModal = ({ onCategoryClick }) => {

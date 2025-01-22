@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import CourseCard from './CourseCard';
-import CategoryFilter from './CategoryFilter';
-import CoursesFilter from './CoursesFilter';
-import { useCategories } from '../hooks/useCategories';
-import { useCourses } from '../hooks/useCourses';
+import { useLocation, useNavigate } from 'react-router-dom';
+import CourseCard from '../CourseCard/index';
+import CategoryFilter from '../CategoryFilter/index';
+import CoursesFilter from '../CoursesFilter/index';
+import { useCategories } from '../../../hooks/useCategories';
+import { useCourses } from '../../../hooks/useCourses';
 import './CourseSection.css';
+
+const removeAccents = (str) => {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+};
 
 const CourseSection = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('default');
@@ -17,6 +22,44 @@ const CourseSection = () => {
 
   const { categories, loading: categoriesLoading, error: categoriesError } = useCategories();
   const { courses, loading: coursesLoading, error: coursesError } = useCourses();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const categoryParam = queryParams.get('category');
+    
+    if (categoryParam && categories.length > 0) {
+      const category = categories.find(cat => 
+        cat.slug === categoryParam || 
+        removeAccents(cat.name.toLowerCase()).replace(/\s+/g, '-') === categoryParam
+      );
+      
+      if (category) {
+        setSelectedCategories([category.id]);
+      } else {
+        setSelectedCategories([]);
+      }
+    } else {
+      setSelectedCategories([]);
+    }
+  }, [location.search, categories]);
+
+  const handleCategoryChange = (categoryId) => {
+    const category = categories.find(cat => cat.id === categoryId);
+    let newSelectedCategories;
+    
+    if (selectedCategories.includes(categoryId)) {
+      newSelectedCategories = [];
+      navigate('/cursos', { replace: true });
+    } else {
+      newSelectedCategories = [categoryId];
+      const categorySlug = category.slug || 
+        removeAccents(category.name.toLowerCase()).replace(/\s+/g, '-');
+      navigate(`/cursos?category=${categorySlug}`, { replace: true });
+    }
+    
+    setSelectedCategories(newSelectedCategories);
+    setCurrentPage(1);
+  };
 
   const filterAndSortCourses = () => {
     let filteredCourses = [...courses];
@@ -113,7 +156,7 @@ const CourseSection = () => {
   if (currentPage > 1) {
     paginationButtons.push(
       <button key="first" onClick={() => setCurrentPage(1)}>
-        Primeira
+        1
       </button>
     );
   }
@@ -162,7 +205,7 @@ const CourseSection = () => {
           <CategoryFilter
             categories={categories}
             selectedCategories={selectedCategories}
-            onCategoryChange={setSelectedCategories}
+            onCategoryChange={handleCategoryChange}
           />
         </div>
         <div className="courses-content">

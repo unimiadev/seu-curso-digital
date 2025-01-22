@@ -1,19 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useCourseDetails } from '../hooks/useCourseDetails';
-import { useCategories } from '../hooks/useCategories';
-import { useModules } from '../hooks/useModules';
+import { useCourseDetails } from '../../../hooks/useCourseDetails';
+import { useCategories } from '../../../hooks/useCategories';
+import { useModules } from '../../../hooks/useModules';
 import './CourseDetails.css';
-import CourseReviews from './CourseReviews';
-import { formatDistanceToNow } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import defaultImage from '../assets/images/seucursodigital.png';
+import CourseReviews from '../CourseReviews/index';
+import defaultImage from '../../../assets/images/seucursodigital.png';
 
 const CourseDetails = ({ onCategoryClick }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('description');
-  const reviewsRef = useRef(null);
   const [activeModule, setActiveModule] = useState(null);
   const { modules, loading: modulesLoading } = useModules(id);
 

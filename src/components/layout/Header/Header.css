@@ -1,0 +1,60 @@
+/* Cabeçalho principal */
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.header-top {
+  padding: 30px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logo {
+  width: 300px;
+  height: auto;
+  max-width: 100%;
+}
+
+.header-nav {
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .header-logo {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+  }
+  
+  .header-logo {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo {
+    width: 180px;
+  }
+} 

@@ -1,0 +1,54 @@
+.landing-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Add padding to account for fixed navbar */
+.landing-page section:not(:first-child) {
+  padding-top: 80px;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Ensure proper spacing between sections */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .landing-page section:not(:first-child) {
+    padding-top: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-page section:not(:first-child) {
+    padding-top: 40px;
+  }
+} 

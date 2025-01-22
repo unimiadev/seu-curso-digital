@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUserData } from '../hooks/useUserData';
+import { useUserData } from '../../../hooks/useUserData';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import './CourseReviews.css';
