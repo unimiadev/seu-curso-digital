@@ -6,6 +6,7 @@ import { useModules } from '../../../hooks/useModules';
 import './CourseDetails.css';
 import CourseReviews from '../CourseReviews/index';
 import defaultImage from '../../../assets/images/seucursodigital.png';
+import LoadingSkeletons from './LoadingSkeletons';
 
 const CourseDetails = ({ onCategoryClick }) => {
   const { id } = useParams();
@@ -33,17 +34,8 @@ const CourseDetails = ({ onCategoryClick }) => {
     setImageError(true);
   };
 
-  if (loading) {
-    return (
-      <section className="course-details-section">
-        <div className="course-details-container">
-          <button className="back-button" onClick={() => navigate('/')}>
-            <i className="fas fa-arrow-left"></i> Voltar
-          </button>
-          <div className="loading-message">Carregando detalhes do curso...</div>
-        </div>
-      </section>
-    );
+  if (loading || modulesLoading) {
+    return <LoadingSkeletons />;
   }
 
   if (error || !course) {
