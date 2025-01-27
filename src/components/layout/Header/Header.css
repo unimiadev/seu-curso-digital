@@ -151,4 +151,17 @@
 .mobile-menu-overlay.active {
   opacity: 1;
   visibility: visible;
+}
+
+/* Add to your existing header styles */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .header-right {
+    gap: 12px;
+  }
 } 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../../assets/images/seucursodigital.png';
 import Navbar from '../Navbar';
+import LanguageSwitcher from '../../LanguageSwitcher';
 
 const Header = () => {
   return (
@@ -16,6 +17,9 @@ const Header = () => {
           />
         </Link>
         <Navbar />
+        <div className="header-right">
+          <LanguageSwitcher />
+        </div>
       </div>
     </header>
   );
