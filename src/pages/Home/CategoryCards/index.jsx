@@ -16,7 +16,7 @@ const CategoryCards = () => {
     {
       image: beautyImage,
       title: 'Beleza',
-      slug: 'beleza'
+      slug: 'beleza-e-estetica'
     },
     {
       image: healthImage,
@@ -26,12 +26,12 @@ const CategoryCards = () => {
     {
       image: itImage,
       title: 'Informática',
-      slug: 'tecnologia'
+      slug: 'informatica'
     },
     {
       image: adminImage,
       title: 'Administração',
-      slug: 'administracao'
+      slug: 'administracao-e-gestao'
     },
     {
       image: languagesImage,
@@ -41,7 +41,7 @@ const CategoryCards = () => {
   ];
 
   const handleCategoryClick = (categorySlug) => {
-    navigate(`/cursos?category=${categorySlug}`);
+    navigate(`/courses?category=${categorySlug}`);
   };
 
   return (
