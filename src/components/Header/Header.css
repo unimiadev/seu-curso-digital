@@ -10,12 +10,6 @@
   .left-section {
     display: flex;
     align-items: center;
-    gap: 15px;
-  }
-
-  .language-switcher {
-    order: -1;
-    margin-right: auto;
   }
 
   .menu-button {

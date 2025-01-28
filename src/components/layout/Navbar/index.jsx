@@ -21,6 +21,10 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
+  const handleLogin = () => {
+    window.location.href = 'https://scd3.expertvision.com.br/';
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -43,7 +47,7 @@ const Navbar = () => {
               <li><Link to="/sobre-nos" onClick={closeMenu}>Quem Somos</Link></li>
               <li><Link to="/fale-conosco" onClick={closeMenu}>Contato</Link></li>
               <li>
-                <Link to="/" className="cta-button" onClick={closeMenu}>
+                <Link to="/" className="cta-button" onClick={handleLogin}>
                   Login
                 </Link>
               </li>
@@ -59,7 +63,7 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-buttons">
-          <Link to="/" className="cta-button">Login</Link>
+          <Link to="/" className="cta-button" onClick={handleLogin}>Login</Link>
         </div>
       </div>
     </nav>

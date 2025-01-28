@@ -4,7 +4,7 @@ import './Footer.css';
 import logo from '../../../assets/images/seucursodigital.png';
 
 const Footer = () => {
-  return (
+  return ( 
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-column brand-column">

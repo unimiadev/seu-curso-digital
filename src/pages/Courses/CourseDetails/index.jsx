@@ -42,6 +42,12 @@ const CourseDetails = () => {
     setImageError(true);
   };
 
+  const handleEnrollment = () => {
+    if (course && course.id) {
+      window.location.href = `https://scd3.expertvision.com.br/#/cursoInfo/${course.id}`;
+    }
+  };
+
   if (loading || modulesLoading) {
     return <LoadingSkeletons />;
   }
@@ -162,7 +168,12 @@ const CourseDetails = () => {
             </div>
 
             <div className="course-info-mobile">
-              <button className="enroll-button-large">Inscreva-se Agora</button>
+              <button 
+                className="enroll-button-large"
+                onClick={handleEnrollment}
+              >
+                Inscreva-se Agora
+              </button>
               
               <div className="course-info-wrapper">
                 <div className="course-info-list">
@@ -276,7 +287,12 @@ const CourseDetails = () => {
 
           <div className="course-sidebar desktop-only">
             <div className="sidebar-card">
-              <button className="enroll-button-large">Inscreva-se Agora</button>
+              <button 
+                className="enroll-button-large"
+                onClick={handleEnrollment}
+              >
+                Inscreva-se Agora
+              </button>
               
               <div className="course-info-list">
                 <div className="info-item">
