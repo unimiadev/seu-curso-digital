@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { setupCategories } from '../../utils/setupCategories';
 
+
+// Componente para configurar as categorias
 const SetupCategoriesButton = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
