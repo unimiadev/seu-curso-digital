@@ -5,7 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/cursos" element={<CoursesMainPage />} />
-        <Route path="/curso/:id" element={<CourseDetailsPage />} />
+        <Route path="/courses/:slug" element={<CourseDetailsPage />} />
         <Route path="/sobre" element={<About />} />
         <Route path="/contato" element={<Contact />} />
         <Route path="/termos" element={<Terms />} />

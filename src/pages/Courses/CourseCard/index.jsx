@@ -8,17 +8,21 @@ const CourseCard = ({ course }) => {
   const [imageError, setImageError] = useState(false);
 
   const handleNavigate = () => {
-    const card = document.getElementById(`course-${course.id}`);
-    const rect = card.getBoundingClientRect();
+    const courseSlug = course.title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove accents
+      .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-'); // Remove consecutive hyphens
     
-    sessionStorage.setItem('courseCardPosition', JSON.stringify({
-      top: rect.top,
-      left: rect.left,
-      width: rect.width,
-      height: rect.height
-    }));
-
-    navigate(`/cursos/${course.id}`);
+    console.log('CourseCard - Navigating to course:', {
+      title: course.title,
+      id: course.id,
+      slug: courseSlug
+    });
+    
+    navigate(`/courses/${courseSlug}`, { state: { courseId: course.id } });
   };
 
   const handleImageError = (e) => {

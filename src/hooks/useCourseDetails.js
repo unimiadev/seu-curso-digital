@@ -44,9 +44,11 @@ export const useCourseDetails = (courseId) => {
 
   useEffect(() => {
     const fetchCourseDetails = async () => {
+      console.log("Fetching course details for ID:", courseId);
       try {
         const cachedData = getLocalCache(courseId);
         if (cachedData) {
+          console.log("Found cached data:", cachedData);
           setCourse(cachedData);
           setLoading(false);
           return;
@@ -54,21 +56,21 @@ export const useCourseDetails = (courseId) => {
 
         const coursesRef = collection(db, "cursosMd");
         const coursesSnapshot = await getDocs(coursesRef);
+        console.log("Total courses found:", coursesSnapshot.docs.length);
 
-        let foundCourse = null;
         let foundCourseDoc = null;
 
-        for (const courseDoc of coursesSnapshot.docs) {
-          const courseData = courseDoc.data();
-
+        for (const doc of coursesSnapshot.docs) {
+          const courseData = doc.data();
           if (courseData.idCursoMd === parseInt(courseId)) {
-            foundCourse = courseData;
-            foundCourseDoc = courseDoc;
+            console.log("Found matching course:", courseData);
+            foundCourseDoc = doc;
             break;
           }
         }
 
-        if (!foundCourse || !foundCourseDoc) {
+        if (!foundCourseDoc) {
+          console.error("No course found for ID:", courseId);
           throw new Error("Curso não encontrado");
         }
 
@@ -76,10 +78,16 @@ export const useCourseDetails = (courseId) => {
         const ptBrDoc = await getDoc(ptBrRef);
 
         if (!ptBrDoc.exists()) {
+          console.error(
+            "PT-BR details not found for course:",
+            foundCourseDoc.id
+          );
           throw new Error("Detalhes do curso não encontrados");
         }
 
         const ptBrData = ptBrDoc.data();
+        console.log("PT-BR course data:", ptBrData);
+
         const avaliacoesRef = collection(
           db,
           `cursosMd/${foundCourseDoc.id}/avaliacoes`
@@ -113,7 +121,7 @@ export const useCourseDetails = (courseId) => {
         const averageRating = validRatings > 0 ? totalRating / validRatings : 0;
 
         const formattedCourse = {
-          id: ptBrData.idCursoMd,
+          id: courseId,
           title: ptBrData.nome,
           image: ptBrData.bannerImage || defaultImage,
           duration: ptBrData.cargaHoraria,
@@ -147,17 +155,21 @@ export const useCourseDetails = (courseId) => {
           }),
         };
 
+        console.log("Final formatted course:", formattedCourse);
         setLocalCache(courseId, formattedCourse);
         setCourse(formattedCourse);
         setLoading(false);
       } catch (err) {
+        console.error("Error in useCourseDetails:", err);
         setError(err);
         setLoading(false);
       }
     };
 
-    if (courseId && !getLocalCache(courseId)) {
+    if (courseId) {
       fetchCourseDetails();
+    } else {
+      console.warn("No courseId provided to useCourseDetails");
     }
   }, [courseId]);
 

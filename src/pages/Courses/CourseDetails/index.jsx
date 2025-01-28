@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useCourseDetails } from '../../../hooks/useCourseDetails';
 import { useCategories } from '../../../hooks/useCategories';
 import { useModules } from '../../../hooks/useModules';
@@ -9,18 +9,36 @@ import defaultImage from '../../../assets/images/seucursodigital.png';
 import LoadingSkeletons from './LoadingSkeletons';
 
 const CourseDetails = ({ onCategoryClick }) => {
-  const { id } = useParams();
+  const { slug } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
+  const courseId = location.state?.courseId;
+  
+  console.log('CourseDetails - Slug:', slug);
+  console.log('CourseDetails - CourseId from state:', courseId);
+
+  useEffect(() => {
+    if (!courseId) {
+      console.error('No courseId found in state');
+      navigate('/'); // Redirect to home if no courseId
+      return;
+    }
+  }, [courseId, navigate]);
+
   const [activeTab, setActiveTab] = useState('description');
   const [activeModule, setActiveModule] = useState(null);
-  const { modules, loading: modulesLoading } = useModules(id);
-
-  const { course, loading, error } = useCourseDetails(id);
+  
+  const { course, loading, error } = useCourseDetails(courseId);
+  const { modules, loading: modulesLoading } = useModules(course?.id);
   const { categories } = useCategories();
 
   const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
+    console.log('CourseDetails - Course data:', course);
+    console.log('CourseDetails - Loading state:', loading);
+    console.log('CourseDetails - Error state:', error);
+
     if (course) {
       console.log('Course Rating:', {
         rating: course.rating,
@@ -28,7 +46,7 @@ const CourseDetails = ({ onCategoryClick }) => {
         courseTitle: course.title
       });
     }
-  }, [course]);
+  }, [course, loading, error]);
 
   const handleImageError = () => {
     setImageError(true);

@@ -40,7 +40,7 @@ const Navbar = () => {
           <div className="mobile-menu-content">
             <ul className="mobile-nav-items">
               <li><Link to="/" onClick={closeMenu}>Início</Link></li>
-              <li><Link to="/cursos" onClick={closeMenu}>Cursos</Link></li>
+              <li><Link to="/courses" onClick={closeMenu}>Cursos</Link></li>
               <li><Link to="/sobre-nos" onClick={closeMenu}>Quem Somos</Link></li>
               <li><Link to="/fale-conosco" onClick={closeMenu}>Contato</Link></li>
               <li>
@@ -55,7 +55,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul className="nav-menu">
           <li><Link to="/">Início</Link></li>
-          <li><Link to="/cursos">Cursos</Link></li>
+          <li><Link to="/courses">Cursos</Link></li>
           <li><Link to="/sobre-nos">Quem Somos</Link></li>
           <li><Link to="/fale-conosco">Contato</Link></li>
         </ul>
