@@ -148,7 +148,6 @@
   }
 }
 
-/* Hover effect for icon colors */
 .feature-card:hover .fa-graduation-cap {
   color: #28a745;
 }

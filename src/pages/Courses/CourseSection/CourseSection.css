@@ -1,38 +1,38 @@
-/* Seção principal dos cursos */
+
 .course-section {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Container dos cursos e filtros */
+
 .course-container {
   display: flex;
   gap: 20px;
   margin-top: 20px;
 }
 
-/* Seção de filtros */
+
 .filters-section {
   flex-shrink: 0;
   width: 300px;
 }
 
-/* Conteúdo dos cursos */
+
 .courses-content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Grade de cursos */
+
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
 
-/* Título da seção */
+
 .course-section h2 {
   font-size: 2.5em;
   color: #333;
@@ -58,7 +58,7 @@
   border-radius: 2px;
 }
 
-/* Mensagens de estado */
+
 .loading-message {
   padding: 20px;
   text-align: center;
@@ -71,7 +71,7 @@
   color: #dc3545;
 }
 
-/* Paginação */
+
 .pagination {
   display: flex;
   justify-content: center;

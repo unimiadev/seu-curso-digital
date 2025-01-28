@@ -3,7 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 const CACHE_KEY = "categories_cache";
-const CACHE_DURATION = 10 * 60 * 1000;
+const CACHE_DURATION = 10 * 60 * 1000; 
 
 const getLocalCache = () => {
   try {
@@ -16,6 +16,7 @@ const getLocalCache = () => {
       localStorage.removeItem(CACHE_KEY);
     }
   } catch (error) {
+    console.error("Cache error:", error);
     return null;
   }
   return null;
@@ -31,7 +32,7 @@ const setLocalCache = (data) => {
       })
     );
   } catch (error) {
-    return;
+    console.error("Cache set error:", error);
   }
 };
 
@@ -55,15 +56,16 @@ export const useCategories = () => {
 
         const categoriesData = snapshot.docs
           .map((doc) => ({
-            id: doc.data().id,
-            name: doc.data().pt_br,
+            id: doc.id, 
+            name: doc.data().name, 
           }))
-          .sort((a, b) => a.id - b.id);
+          .sort((a, b) => a.name.localeCompare(b.name)); 
 
         setLocalCache(categoriesData);
         setCategories(categoriesData);
         setLoading(false);
       } catch (err) {
+        console.error("Error fetching categories:", err);
         setError(err);
         setLoading(false);
       }

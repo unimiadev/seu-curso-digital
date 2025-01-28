@@ -14,7 +14,7 @@
   flex: 1;
 }
 
-/* Header Styles */
+
 .about-header {
   text-align: center;
   margin-bottom: 80px;
@@ -41,7 +41,7 @@
   border-radius: 2px;
 }
 
-/* Section Styles */
+
 .about-section {
   display: flex;
   align-items: center;
@@ -309,7 +309,7 @@
   font-weight: 700;
 }
 
-/* Header Decorations */
+
 .header-decoration {
   position: relative;
   margin-bottom: 30px;
@@ -338,7 +338,7 @@
   opacity: 0.8;
 }
 
-/* Content Enhancements */
+
 .content-header {
   margin-bottom: 20px;
   position: relative;
@@ -358,7 +358,7 @@
   border-radius: 2px;
 }
 
-/* Image Frame */
+
 .image-frame {
   position: relative;
   border-radius: 20px;
@@ -377,7 +377,7 @@
   z-index: 1;
 }
 
-/* Background Decorations */
+
 .background-decoration {
   position: absolute;
   top: 0;
@@ -415,7 +415,7 @@
   left: 10%;
 }
 
-/* Enhanced Hover Effects */
+
 .content-wrapper {
   transform-style: preserve-3d;
   perspective: 1000px;
@@ -433,7 +433,7 @@
   );
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .decoration-circle {
     width: 40px;
@@ -467,7 +467,7 @@
   }
 }
 
-/* Add smooth transitions for better mobile experience */
+
 .about-section, 
 .content-wrapper, 
 .about-image, 
@@ -475,7 +475,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* Fix content alignment in mobile */
+
 @media (max-width: 768px) {
   .about-section {
     align-items: center;
@@ -489,14 +489,14 @@
     width: 100%;
   }
 
-  /* Center all decorative elements */
+ 
   .section-decoration,
   .title-underline {
     margin-left: auto;
     margin-right: auto;
   }
 
-  /* Ensure proper spacing around text */
+ 
   .content-header {
     margin-bottom: 15px;
   }

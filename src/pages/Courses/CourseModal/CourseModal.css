@@ -1,4 +1,4 @@
-/* Fundo do modal com efeito blur */
+
 .course-modal-backdrop {
   position: fixed;
   top: 0;
@@ -16,7 +16,7 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Conteúdo do modal */
+
 .course-modal-content {
   width: 100%;
   max-width: 1200px;
@@ -27,7 +27,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Animações de entrada e saída */
+
 @keyframes fadeIn {
   from {
     background-color: rgba(0, 0, 0, 0);

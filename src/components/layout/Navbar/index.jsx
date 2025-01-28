@@ -5,7 +5,6 @@ import './Navbar.css';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Prevent scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -52,7 +51,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Desktop Menu */}
         <ul className="nav-menu">
           <li><Link to="/">Início</Link></li>
           <li><Link to="/courses">Cursos</Link></li>

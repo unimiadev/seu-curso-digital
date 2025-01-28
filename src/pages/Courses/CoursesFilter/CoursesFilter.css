@@ -1,4 +1,4 @@
-/* Container principal dos filtros */
+
 .courses-filter {
   display: flex;
   gap: 20px;
@@ -7,14 +7,14 @@
   justify-content: space-between;
 }
 
-/* Container da barra de pesquisa */
+
 .search-container {
   position: relative;
   max-width: 300px;
   width: 100%;
 }
 
-/* Campo de pesquisa */
+
 .search-input {
   width: 100%;
   padding: 10px 16px;
@@ -25,7 +25,7 @@
   transition: border-color 0.2s;
 }
 
-/* Ícone de pesquisa */
+
 .search-icon {
   position: absolute;
   left: 12px;
@@ -34,7 +34,7 @@
   color: #6c757d;
 }
 
-/* Container do seletor de ordenação */
+
 .sort-container {
   width: 200px;
   flex-shrink: 0;

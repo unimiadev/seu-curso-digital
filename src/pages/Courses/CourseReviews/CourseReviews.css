@@ -1,16 +1,16 @@
-/* Container principal das avaliações */
+
 .course-reviews {
   margin-top: 40px;
 }
 
-/* Título da seção de avaliações */
+
 .course-reviews h3 {
   font-size: 1.5em;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Resumo das avaliações */
+
 .reviews-summary {
   background-color: #f8f9fa;
   border-radius: 12px;
@@ -19,7 +19,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* Visão geral das avaliações */
+
 .rating-overview {
   display: flex;
   gap: 40px;

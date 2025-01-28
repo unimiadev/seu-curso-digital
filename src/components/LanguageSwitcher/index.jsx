@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
     { code: 'es', name: 'Español', flag: '🇪🇸', url: 'https://beharv.com' }
   ];
 
-  const currentLanguage = languages[0]; // Default to Portuguese
+  const currentLanguage = languages[0]; 
 
   useEffect(() => {
     const handleClickOutside = (event) => {

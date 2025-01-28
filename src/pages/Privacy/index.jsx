@@ -20,7 +20,6 @@ const Privacy = () => {
               Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.
             </p>
 
-            {/* ... rest of the privacy policy text ... */}
             
             <h2>Política de Cookies Seu Curso Digital – CURSOS</h2>
             <h3>O que são cookies?</h3>
@@ -28,7 +27,6 @@ const Privacy = () => {
               Como é prática comum em quase todos os sites profissionais, este site usa cookies, que são pequenos arquivos baixados no seu computador, para melhorar sua experiência. Esta página descreve quais informações eles coletam, como as usamos e por que às vezes precisamos armazenar esses cookies. Também compartilharemos como você pode impedir que esses cookies sejam armazenados, no entanto, isso pode fazer o downgrade ou 'quebrar' certos elementos da funcionalidade do site.
             </p>
 
-            {/* ... rest of the cookies policy text ... */}
 
             <h2>Compromisso do Usuário</h2>
             <p>
@@ -45,7 +43,7 @@ const Privacy = () => {
               Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.
             </p>
             <p>
-              Esta política é efetiva a partir de May/2022.
+              Esta política é efetiva a partir de Maio/2022.
             </p>
           </section>
         </div>

@@ -50,12 +50,12 @@ const CourseSection = () => {
     
     if (selectedCategories.includes(categoryId)) {
       newSelectedCategories = [];
-      navigate('/cursos', { replace: true });
+      navigate('/courses', { replace: true });
     } else {
       newSelectedCategories = [categoryId];
       const categorySlug = category.slug || 
         removeAccents(category.name.toLowerCase()).replace(/\s+/g, '-');
-      navigate(`/cursos?category=${categorySlug}`, { replace: true });
+      navigate(`/courses?category=${categorySlug}`, { replace: true });
     }
     
     setSelectedCategories(newSelectedCategories);

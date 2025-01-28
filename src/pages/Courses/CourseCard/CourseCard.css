@@ -1,4 +1,4 @@
-/* Estilo base do cartão do curso */
+
 .course-card {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -12,13 +12,13 @@
   min-height: 400px;
 }
 
-/* Efeito hover do cartão */
+
 .course-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* Container da imagem do curso */
+
 .course-image {
   position: relative;
   width: 100%;
@@ -26,7 +26,7 @@
   background-color: #f8f9fa;
 }
 
-/* Imagem do curso */
+
 .course-image img {
   position: absolute;
   top: 0;
@@ -36,14 +36,14 @@
   object-fit: cover;
 }
 
-/* Imagem padrão quando a original falha */
+
 .course-image img.default-image {
   object-fit: contain;
   padding: 0px;
   background-color: #f8f9fa;
 }
 
-/* Container de informações */
+
 .course-info {
   padding: 15px;
   display: flex;
@@ -52,7 +52,7 @@
   min-height: 0;
 }
 
-/* Título do curso */
+
 .course-info h3 {
   margin: 10px 0;
   font-size: 1.1em;
@@ -64,7 +64,7 @@
   word-wrap: break-word;
 }
 
-/* Avaliações */
+
 .rating {
   color: #666;
   margin-bottom: 10px;
@@ -130,14 +130,14 @@
   font-size: 0.9em;
 }
 
-/* Detalhes do curso */
+
 .course-details {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Informações do provedor e duração */
+
 .course-meta-info {
   margin-top: auto;
   padding-top: 12px;
@@ -181,7 +181,7 @@
   font-size: 1em;
 }
 
-/* Botão de inscrição */
+
 .enroll-button {
   width: 100%;
   padding: 10px;
@@ -197,7 +197,7 @@
   background-color: #0056b3;
 }
 
-/* Título clicável */
+
 .course-title {
   cursor: pointer;
   transition: color 0.2s;
@@ -209,7 +209,7 @@
   outline: none;
 }
 
-/* Tags de categoria */
+
 .category-tag {
   display: inline-block;
   padding: 4px 12px;
@@ -228,7 +228,7 @@
   color: white;
 }
 
-/* Responsividade */
+
 @media (max-width: 768px) {
   .course-card {
     min-height: 380px;
@@ -245,7 +245,7 @@
   }
 }
 
-/* iOS specific fixes */
+
 @supports (-webkit-touch-callout: none) {
   .course-card {
     display: -webkit-flex;

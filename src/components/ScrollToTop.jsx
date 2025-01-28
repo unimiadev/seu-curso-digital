@@ -5,12 +5,12 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Add a small delay to ensure DOM is ready
+    
     setTimeout(() => {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'instant' // Use 'instant' instead of 'smooth' to prevent jarring experience
+        behavior: 'instant' 
       });
     }, 0);
   }, [pathname]);

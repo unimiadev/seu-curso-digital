@@ -1,52 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useCourseDetails } from '../../../hooks/useCourseDetails';
-import { useCategories } from '../../../hooks/useCategories';
 import { useModules } from '../../../hooks/useModules';
 import './CourseDetails.css';
 import CourseReviews from '../CourseReviews/index';
 import defaultImage from '../../../assets/images/seucursodigital.png';
 import LoadingSkeletons from './LoadingSkeletons';
 
-const CourseDetails = ({ onCategoryClick }) => {
-  const { slug } = useParams();
+const CourseDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const courseId = location.state?.courseId;
-  
-  console.log('CourseDetails - Slug:', slug);
-  console.log('CourseDetails - CourseId from state:', courseId);
-
-  useEffect(() => {
-    if (!courseId) {
-      console.error('No courseId found in state');
-      navigate('/'); // Redirect to home if no courseId
-      return;
-    }
-  }, [courseId, navigate]);
-
+  const [imageError, setImageError] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
   const [activeModule, setActiveModule] = useState(null);
   
+  const courseId = location.state?.courseId;
   const { course, loading, error } = useCourseDetails(courseId);
-  const { modules, loading: modulesLoading } = useModules(course?.id);
-  const { categories } = useCategories();
+  const { modules, loading: modulesLoading } = useModules(courseId);
 
-  const [imageError, setImageError] = useState(false);
-
-  useEffect(() => {
-    console.log('CourseDetails - Course data:', course);
-    console.log('CourseDetails - Loading state:', loading);
-    console.log('CourseDetails - Error state:', error);
-
-    if (course) {
-      console.log('Course Rating:', {
-        rating: course.rating,
-        numberOfRatings: course.ratingCount,
-        courseTitle: course.title
-      });
+  const handleBack = () => {
+    if (location.state?.fromCourses) {
+      navigate(-1);
+    } else {
+      navigate('/courses');
     }
-  }, [course, loading, error]);
+  };
+
+  const handleCategoryClick = (category) => {
+    const categorySlug = category
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+
+    navigate(`/courses?category=${categorySlug}`);
+  };
 
   const handleImageError = () => {
     setImageError(true);
@@ -59,38 +49,15 @@ const CourseDetails = ({ onCategoryClick }) => {
   if (error || !course) {
     return (
       <section className="course-details-section">
-        <div className="course-details-container">
-          <button className="back-button" onClick={() => navigate('/')}>
+        <div className="error-container">
+          <h2>Curso não encontrado</h2>
+          <button onClick={handleBack} className="back-button">
             <i className="fas fa-arrow-left"></i> Voltar
           </button>
-          <div className="error-message">
-            {error?.message || 'Curso não encontrado'}
-          </div>
         </div>
       </section>
     );
   }
-
-  const handleCategoryClick = (categoryName) => {
-    const categoryTerms = categoryName.toLowerCase().split(' e ');
-    
-    const matchingCategoryIds = categories
-      .filter(category => 
-        categoryTerms.some(term => 
-          category.name.toLowerCase().includes(term)
-        )
-      )
-      .map(category => category.id);
-
-    if (matchingCategoryIds.length > 0) {
-      navigate('/', { 
-        state: { 
-          selectedCategories: matchingCategoryIds,
-          fromCourseDetails: true
-        } 
-      });
-    }
-  };
 
   const renderStars = (rating) => {
     const stars = [];
@@ -134,11 +101,26 @@ const CourseDetails = ({ onCategoryClick }) => {
 
   return (
     <section className="course-details-section">
-      <div className="course-details-container">
-        <button className="back-button" onClick={() => navigate('/')}>
+      <div className="course-details-header">
+        <button onClick={handleBack} className="back-button">
           <i className="fas fa-arrow-left"></i> Voltar
         </button>
-        
+        {course.categoria && (
+          <div className="course-categories">
+            {course.categoria.split(',').map((category, index) => (
+              <button
+                key={index}
+                className="category-bubble"
+                onClick={() => handleCategoryClick(category.trim())}
+              >
+                {category.trim()}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="course-details-container">
         <div className="course-content-wrapper">
           <div className="course-main-content">
             <div className="course-header">
@@ -252,43 +234,44 @@ const CourseDetails = ({ onCategoryClick }) => {
               </button>
             </div>
 
-            {activeTab === 'description' && (
-              <div className="course-description">
-                <p>{course.description}</p>
-                
-                <div className="course-modules">
-                  <h2>Conteúdo do Curso</h2>
-                  {modulesLoading ? (
-                    <div className="loading-message">Carregando módulos...</div>
-                  ) : (
-                    <div className="modules-list">
-                      {modules.map((module) => (
-                        <div key={module.id} className="module-item">
-                          <div 
-                            className={`module-header ${activeModule === module.id ? 'active' : ''}`}
-                            onClick={() => setActiveModule(
-                              activeModule === module.id ? null : module.id
-                            )}
+            <div className="tab-content">
+              {activeTab === 'description' && (
+                <div className="course-description">
+                  <p>{course.description}</p>
+                  
+                  <div className="course-modules">
+                    <h2>Conteúdo do Curso</h2>
+                    {modulesLoading ? (
+                      <div className="loading-message">Carregando módulos...</div>
+                    ) : (
+                      <div className="modules-list">
+                        {modules.map((module) => (
+                          <div
+                            key={module.id}
+                            className={`module-item ${activeModule === module.id ? 'active' : ''}`}
+                            onClick={() => setActiveModule(activeModule === module.id ? null : module.id)}
                           >
-                            <span className="module-number">Módulo {module.id}</span>
-                            <span className={`arrow ${activeModule === module.id ? 'open' : ''}`}>
-                              <i className="fas fa-chevron-down"></i>
-                            </span>
+                            <div className="module-header">
+                              <h3>{module.title}</h3>
+                              <i className={`fas fa-chevron-${activeModule === module.id ? 'up' : 'down'}`}></i>
+                            </div>
+                            {activeModule === module.id && (
+                              <div className="module-lessons">
+                                {/* Module lessons content */}
+                              </div>
+                            )}
                           </div>
-                          <div className={`module-content ${activeModule === module.id ? 'show' : ''}`}>
-                            <h3 className="module-title">{module.title}</h3>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {activeTab === 'reviews' && (
-              <CourseReviews reviews={course.reviews} />
-            )}
+              {activeTab === 'reviews' && (
+                <CourseReviews reviews={course.reviews} />
+              )}
+            </div>
           </div>
 
           <div className="course-sidebar desktop-only">

@@ -7,7 +7,6 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Brand Column */}
         <div className="footer-column brand-column">
           <img src={logo} alt="Logo" className="footer-logo" />
           <p className="brand-description">
@@ -15,7 +14,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Institutional Links Column */}
         <div className="footer-column">
           <h3>Links Institucionais</h3>
           <ul className="footer-links">
@@ -34,7 +32,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Useful Links Column */}
         <div className="footer-column">
           <h3>Links Úteis</h3>
           <ul className="footer-links">

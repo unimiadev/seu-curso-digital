@@ -1,6 +1,7 @@
 .language-switcher {
   position: relative;
   display: inline-block;
+  padding-right: 40px;
 }
 
 .language-button {
@@ -107,7 +108,7 @@
   color: #007bff;
 }
 
-/* Divider between options */
+
 .language-option:not(:last-child) {
   border-bottom: 1px solid #f0f0f0;
 }

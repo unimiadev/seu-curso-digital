@@ -22,7 +22,12 @@ const CourseCard = ({ course }) => {
       slug: courseSlug
     });
     
-    navigate(`/courses/${courseSlug}`, { state: { courseId: course.id } });
+    navigate(`/courses/${courseSlug}`, { 
+      state: { 
+        courseId: course.id,
+        fromCourses: true
+      } 
+    });
   };
 
   const handleImageError = (e) => {

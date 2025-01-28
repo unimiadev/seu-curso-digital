@@ -62,7 +62,7 @@
   display: none;
 }
 
-/* Hamburger Menu Button */
+
 .hamburger-menu {
   display: none;
   flex-direction: column;
@@ -92,7 +92,7 @@
   transform-origin: 1px;
 }
 
-/* Mobile Menu Container */
+
 .mobile-menu {
   display: none;
   position: fixed;
@@ -161,7 +161,7 @@
   transform: translateX(5px);
 }
 
-/* Hamburger Animation */
+
 .hamburger-menu.active .hamburger-line:first-child {
   transform: rotate(45deg);
   background: #007bff;
@@ -177,7 +177,7 @@
   background: #007bff;
 }
 
-/* Mobile styles */
+
 @media (max-width: 768px) {
   .navbar {
     position: absolute;
@@ -205,7 +205,7 @@
     padding-top: 70px;
   }
 
-  /* CTA button in mobile menu */
+ 
   .mobile-nav-items .cta-button {
     margin-top: 20px;
     padding: 12px 30px;

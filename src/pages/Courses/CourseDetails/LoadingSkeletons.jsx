@@ -4,7 +4,6 @@ import './LoadingSkeletons.css';
 const LoadingSkeletons = () => {
   return (
     <div className="course-details-skeleton">
-      {/* Hero Section */}
       <div className="hero-section-skeleton">
         <div className="container">
           <div className="hero-content">
@@ -21,7 +20,6 @@ const LoadingSkeletons = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="main-content-skeleton">
         <div className="container">
           {/* Tabs */}
@@ -31,13 +29,11 @@ const LoadingSkeletons = () => {
             ))}
           </div>
 
-          {/* Description Content */}
           <div className="skeleton-description">
             {[1, 2, 3].map((item) => (
               <div key={item} className="skeleton-text-block"></div>
             ))}
 
-            {/* Modules Section */}
             <div className="skeleton-modules">
               <div className="skeleton-module-title"></div>
               {[1, 2, 3, 4].map((item) => (

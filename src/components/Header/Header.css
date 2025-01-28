@@ -1,0 +1,24 @@
+.header {
+ 
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    justify-content: space-between;
+  }
+
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .language-switcher {
+    order: -1;
+    margin-right: auto;
+  }
+
+  .menu-button {
+    order: 2;
+  }
+} 
