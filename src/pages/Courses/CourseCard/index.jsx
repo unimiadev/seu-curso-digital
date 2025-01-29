@@ -7,14 +7,34 @@ const CourseCard = ({ course }) => {
   const navigate = useNavigate();
   const [imageError, setImageError] = useState(false);
 
+  // Add list of courses that need "-2" suffix
+  const specialCourses = [
+    'administracao-em-enfermagem',
+    'agente-comunitario-de-saude',
+    'atendente-de-farmacia',
+    'automaquiagem',
+    'auxiliar-de-necropsia',
+    'cuidador-infantil',
+    'frentista',
+    'gestao-de-salao-de-beleza',
+    'motorista-de-aplicativo',
+    'operador-de-prensa',
+    'tecnicas-de-vendas'
+  ];
+
   const handleNavigate = () => {
-    const courseSlug = course.title
+    let courseSlug = course.title
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Remove accents
-      .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-'); // Remove consecutive hyphens
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+    
+    // Check if this course should have "-2" suffix
+    if (specialCourses.includes(courseSlug)) {
+      courseSlug = `${courseSlug}-2`;
+    }
     
     console.log('CourseCard - Navigating to course:', {
       title: course.title,
