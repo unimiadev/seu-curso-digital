@@ -44,7 +44,7 @@ const CourseDetails = () => {
 
   const handleEnrollment = () => {
     if (course && course.id) {
-      window.location.href = `https://scd3.expertvision.com.br/#/cursoInfo/${course.id}`;
+      window.location.href = `https://cursosap.seucursodigital.com/#/cursoInfo/${course.id}`;
     }
   };
 

@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   const handleLogin = () => {
-    window.location.href = 'https://scd3.expertvision.com.br/';
+    window.location.href = 'https://cursosap.seucursodigital.com';
   };
 
   return (

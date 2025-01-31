@@ -36,9 +36,6 @@ const Footer = () => {
           <h3>Links Úteis</h3>
           <ul className="footer-links">
             <li>
-              <Link to="/">Painel do Usuário</Link>
-            </li>
-            <li>
               <Link to="/cursos">Lista de Cursos</Link>
             </li>
             <li>
