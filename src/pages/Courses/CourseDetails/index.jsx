@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useCourseDetails } from '../../../hooks/useCourseDetails';
 import { useModules } from '../../../hooks/useModules';
 import './CourseDetails.css';
@@ -10,14 +10,19 @@ import LoadingSkeletons from './LoadingSkeletons';
 const CourseDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { slug } = useParams();
   const [imageError, setImageError] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
   const [activeModule, setActiveModule] = useState(null);
   
-  const courseId = location?.state?.courseId ?? location.pathname.split('/').pop();
-
-  const { course, loading, error } = useCourseDetails(courseId);
-  const { modules, loading: modulesLoading } = useModules(courseId);
+  // Get courseId from state if available
+  const stateId = location?.state?.courseId;
+  
+  // First fetch course by either ID or slug
+  const { course, loading: courseLoading, error: courseError } = useCourseDetails(stateId, slug);
+  
+  // Then fetch modules using the course ID from the fetched course
+  const { modules, loading: modulesLoading } = useModules(course?.id);
 
   const handleBack = () => {
     if (location.state?.fromCourses) {
@@ -49,11 +54,11 @@ const CourseDetails = () => {
     }
   };
 
-  if (loading || modulesLoading) {
+  if (courseLoading || modulesLoading) {
     return <LoadingSkeletons />;
   }
 
-  if (error || !course) {
+  if (courseError || !course) {
     return (
       <section className="course-details-section">
         <div className="error-container">

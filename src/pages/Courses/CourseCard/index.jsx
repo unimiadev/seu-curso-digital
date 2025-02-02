@@ -36,12 +36,6 @@ const CourseCard = ({ course }) => {
       courseSlug = `${courseSlug}-2`;
     }
     
-    console.log('CourseCard - Navigating to course:', {
-      title: course.title,
-      id: course.id,
-      slug: courseSlug
-    });
-    
     navigate(`/courses/${courseSlug}`, { 
       state: { 
         courseId: course.id,

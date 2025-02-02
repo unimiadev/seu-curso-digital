@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/sobre-nos" element={<About />} />
           <Route path="/courses" element={<CoursesPage />} />
-          <Route path="/courses/:name/:id?" element={<CourseDetailsPage />} />
+          <Route path="/courses/:slug" element={<CourseDetailsPage />} />
           <Route path="/termos-de-uso" element={<Terms />} />
           <Route path="/fale-conosco" element={<Contact />} />
           <Route path="/politica-de-privacidade" element={<Privacy />} />

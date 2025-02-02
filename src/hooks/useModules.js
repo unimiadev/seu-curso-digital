@@ -9,32 +9,34 @@ export const useModules = (courseId) => {
 
   useEffect(() => {
     const fetchModules = async () => {
+      if (!courseId) {
+        setLoading(false);
+        return;
+      }
+
       try {
-        const modulesRef = collection(
-          db,
-          `cursosMd/${courseId}/pt_br/modulos/modulos`
-        );
+        setLoading(true);
+        const modulesRef = collection(db, "cursosMd", courseId, "modules");
         const modulesSnapshot = await getDocs(modulesRef);
 
         const modulesData = modulesSnapshot.docs
           .map((doc) => ({
             id: doc.id,
-            title: doc.data().titulo,
+            ...doc.data(),
           }))
-          .sort((a, b) => parseInt(a.id) - parseInt(b.id));
+          .sort((a, b) => a.order - b.order);
 
         setModules(modulesData);
-        setLoading(false);
       } catch (err) {
+        console.error("Error fetching modules:", err);
         setError(err);
+      } finally {
         setLoading(false);
       }
     };
 
-    if (courseId) {
-      fetchModules();
-    }
-  }, [courseId]);
+    fetchModules();
+  }, [courseId]); // Only re-run when courseId changes
 
   return { modules, loading, error };
 };
