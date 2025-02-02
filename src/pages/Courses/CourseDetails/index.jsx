@@ -14,7 +14,8 @@ const CourseDetails = () => {
   const [activeTab, setActiveTab] = useState('description');
   const [activeModule, setActiveModule] = useState(null);
   
-  const courseId = location.state?.courseId;
+  const courseId = location?.state?.courseId ?? location.pathname.split('/').pop();
+
   const { course, loading, error } = useCourseDetails(courseId);
   const { modules, loading: modulesLoading } = useModules(courseId);
 
