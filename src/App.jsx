@@ -5,12 +5,12 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/termos" element={<Terms />} />
         <Route path="/politica-de-privacidade" element={<Privacy />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 
